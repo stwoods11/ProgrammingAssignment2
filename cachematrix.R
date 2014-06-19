@@ -1,6 +1,36 @@
 ## The makeCacheMatrix function provides a way to create a matrix that will retain its inverse
 ## after it calculates the first time using cacheSolve.
 
+## Here's a sequence of calls that demonstrates the functionality of makeCacheMatrix and cacheSolve.
+
+## > a <- makeCacheMatrix(matrix(1:4,2,2))
+## > a$get()
+## [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+## > cacheSolve(a)
+## Calculating the inverse and caching ...
+## [,1] [,2]
+## [1,]   -2  1.5
+## [2,]    1 -0.5
+## > cacheSolve(a)
+## Returning the cached inverted matrix ...
+## [,1] [,2]
+## [1,]   -2  1.5
+## [2,]    1 -0.5
+## > a$set(matrix(4:1,2,2))
+## Setting the matrix and initializing the inverse to null to force it to recalculate ...
+## > cacheSolve(a)
+## Calculating the inverse and caching ...
+## [,1] [,2]
+## [1,] -0.5    1
+## [2,]  1.5   -2
+## > cacheSolve(a)
+## Returning the cached inverted matrix ...
+## [,1] [,2]
+## [1,] -0.5    1
+## [2,]  1.5   -2
+
 ## This function creates a matrix that has the property of caching its inverse.
 ## The inversion of the matrix is cached once calculated for the first time.
 ## If the matrix is changed using the set function, it will clear the cache, forcing a
